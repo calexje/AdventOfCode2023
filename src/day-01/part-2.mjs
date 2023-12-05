@@ -17,7 +17,7 @@ export async function processPart2(input) {
                               .replaceAll('eight','eigh8t')
                               .replaceAll('nine','nin9e')
     var strippedList = alphaToNum.replace(/[a-z]/gi, '');
-    console.log("List"+strippedList)    
+    //console.log("List"+strippedList)    
     var strippedArray = strippedList.split(/\r?\n/);
     var strippedArrayLength = strippedArray.length
     for (let i = 0; i< strippedArrayLength; i++){
@@ -29,13 +29,5 @@ export async function processPart2(input) {
     console.error(`Error reading file: ${err.message}`);
     throw err;
   }
-
-// pseudo 
-//2a) grab list as array
-//2b) .replace "one" as "on1e", two as "tw2o" etc (reason will become obvious shortly)
-//2c) see 1b-1e
-//1c)loop through each item in the list get a length
-//1d) .split() each item, concat item[0] and item[length]
-//1e) add the value to a variable, return to 1c) until I finish the original array
   return input;
 }

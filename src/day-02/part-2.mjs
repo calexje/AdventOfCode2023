@@ -25,9 +25,9 @@ export async function processPart2(input) {
       });
       games.push(gameObj);
     var power = gameObj.red * gameObj.blue * gameObj.green;
-      console.log(`Game ${i}:`, gameObj);
-      console.log(`Game ${i} max red is ${gameObj.red} max blue is ${gameObj.blue} max green is ${gameObj.green}. Multiply those together for ${power}`);
-      console.log(`I added ${power} for Game ${i}. The new level is ${powerLevel + power}`);
+      //console.log(`Game ${i}:`, gameObj);
+      //console.log(`Game ${i} max red is ${gameObj.red} max blue is ${gameObj.blue} max green is ${gameObj.green}. Multiply those together for ${power}`);
+      //console.log(`I added ${power} for Game ${i}. The new level is ${powerLevel + power}`);
       powerLevel += power;
     }
 

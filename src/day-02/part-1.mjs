@@ -21,39 +21,31 @@ export async function processPart1() {
       // Create a final object with game ID and color-quantity pairs
       const finalObject = { game: `${i}-${j}` };
       transformedResult.forEach((obj) => Object.assign(finalObject, obj));
-      console.log(finalObject);
+      //console.log(finalObject);
       if(finalObject.red>12){
-        console.log("game: "+[i+1]+"-"+[j+1]+" is not valid - too many reds")
+        //console.log("game: "+[i+1]+"-"+[j+1]+" is not valid - too many reds")
         counterTotal.push(i+1)
       }
       else if (finalObject.green>13) {
-        console.log("game: "+[i+1]+"-"+[j+1]+" is not valid - too many greens")
+        //console.log("game: "+[i+1]+"-"+[j+1]+" is not valid - too many greens")
         counterTotal.push(i+1)
       }
       else if (finalObject.blue>14) {
-        console.log("game: "+[i+1]+"-"+[j+1]+" is not valid - too many blues")
+        //console.log("game: "+[i+1]+"-"+[j+1]+" is not valid - too many blues")
         counterTotal.push(i+1)
       }
     }
-console.log(counterTotal)
+//console.log(counterTotal)
 }
 let finalCounter = 0
 for (let k = 0; k <=100;k++) {
   if (counterTotal.includes(k)) {
-    console.log(k+" skipped")
   }
   else {
     finalCounter += k
-    console.log ("total is "+finalCounter)
   }
 }
-console.log(finalCounter);
-console.log("Part 1 is finished!")
-console.log("Part 1 is finished!")
-console.log("Part 2 Starts!")
-console.log("Part 2 Starts!")
-
-    return "Part 1: " + dataArray;
+    return "Part 1: " + finalCounter;
   } catch (err) {
     console.error(`Error reading file: ${err.message}`);
     throw err;
