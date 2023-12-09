@@ -17,7 +17,7 @@ export async function processPart2(input) {
                               .replaceAll('eight','eigh8t')
                               .replaceAll('nine','nin9e')
     var strippedList = alphaToNum.replace(/[a-z]/gi, '');
-    //console.log("List"+strippedList)    
+    console.log("List"+strippedList)    
     var strippedArray = strippedList.split(/\r?\n/);
     var strippedArrayLength = strippedArray.length
     for (let i = 0; i< strippedArrayLength; i++){

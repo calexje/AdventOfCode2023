@@ -4,7 +4,7 @@ export async function processPart1() {
   const elfFile = '/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-04/input.txt';
 
   try {
-  /*  var scoreTotal = 0 //total score
+  var scoreTotal = 0 //total score
     var scoreValue= 0 //round score
     const dataFile = await readFile(elfFile, 'utf8');
     const sanitiseFile = dataFile.replaceAll("  "," 0")
@@ -49,7 +49,6 @@ console.log("Now we're out of the loop this should print once")
 console.log("The final score is"+scoreTotal)
 console.log("********** END OF GAME***********")
     return "Part 1: "
-  */
   } catch (err) {
     console.error(`Error reading file: ${err.message}`);
     throw err;

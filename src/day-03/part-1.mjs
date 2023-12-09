@@ -37,7 +37,7 @@ export async function processPart1() {
           } else {
             if(saveInput){
               currentCount+=Number(currentInput)
-              //console.log("We added "+currentInput+", the current value is " +currentCount)
+              console.log("We added "+currentInput+", the current value is " +currentCount)
             }
           currentInput=""
           saveInput = false

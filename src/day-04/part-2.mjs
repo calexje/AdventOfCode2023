@@ -7,7 +7,6 @@ const fileName = "/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-04/in
   
 export async function processPart2(input) {
 try {
-    /*
   const file = fs.readFileSync(fileName, 'utf8');
   const games = file.split(/\r?\n/);
   let points = 0;
@@ -55,7 +54,6 @@ try {
   
   console.log(`Part 2: ${cards.length} cards`);
     return "Part 2: "
-    */
   } catch (err) {
     console.error(`Error reading file: ${err.message}`);
     throw err;
