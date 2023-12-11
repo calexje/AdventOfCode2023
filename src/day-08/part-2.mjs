@@ -6,18 +6,11 @@ export async function processPart2() {
   const elfFile = '/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-08/input.txt';
   const dataFile = await readFile(elfFile, 'utf8');
   const lines = dataFile.split ("\n");
-  let currentStation1 = "VBA"
-  let currentStation2 = "TVA"
-  let currentStation3 = "DVA"
-  let currentStation4 = "VPA"
-  let currentStation5 = "AAA"
-  let currentStation6 = "DTA"
-  let currentStationIndex1 = 0
-  let currentStationIndex2 = 0
-  let currentStationIndex3 = 0
-  let currentStationIndex4 = 0
-  let currentStationIndex5 = 0
-  let currentStationIndex6 = 0
+  let currentStation = ""
+  let startStation = []
+  let stationRatios=[]
+  let stationMultiplier = 1
+  let currentStationIndex = 0
   let arrived = false
   let stations = []
   let lefts = []
@@ -36,52 +29,43 @@ export async function processPart2() {
   const directions = lines[0].split("");
 
 try {
+  
+  for (let i = 0;i<stations.length; i++){
+    currentStation = stations[i]
+  if (currentStation.endsWith("A")==true){
+    startStation.push(currentStation)
+  }
+}console.log("Found all the stations, the list is " + startStation)
 
       do {
-      for (let i = 0;i<=directions.length;i++){
-        if(stationsVisited%5000000000000==0){
-          console.log(stationsVisited)
-          debugger
-        }
-          if(
-          currentStation1.endsWith("Z")==false ||
-          currentStation2.endsWith("Z")==false || 
-          currentStation3.endsWith("Z")==false ||
-          currentStation4.endsWith("Z")==false ||
-          currentStation5.endsWith("Z")==false ||
-          currentStation6.endsWith("Z")==false){
-          currentStationIndex1 = stations.indexOf(currentStation1)
-          currentStationIndex2 = stations.indexOf(currentStation2)
-          currentStationIndex3 = stations.indexOf(currentStation3)
-          currentStationIndex4 = stations.indexOf(currentStation4)
-          currentStationIndex5 = stations.indexOf(currentStation5)
-          currentStationIndex6 = stations.indexOf(currentStation6)
-          if(directions[i] === "R"){
-            currentStation1 = rights[currentStationIndex1]
-            currentStation2 = rights[currentStationIndex2]
-            currentStation3 = rights[currentStationIndex3]
-            currentStation4 = rights[currentStationIndex4]
-            currentStation5 = rights[currentStationIndex5]
-            currentStation6 = rights[currentStationIndex6]
-
-        }else{
-          currentStation1 = lefts[currentStationIndex1]
-          currentStation2 = lefts[currentStationIndex2]
-          currentStation3 = lefts[currentStationIndex3]
-          currentStation4 = lefts[currentStationIndex4]
-          currentStation5 = lefts[currentStationIndex5]
-          currentStation6 = lefts[currentStationIndex6]
-          
-        }stationsVisited++
-        if(i == directions.length){
-          i=0}
-         }
-        arrived = true
-      }} while (!arrived)
-      debugger
-      console.log("I'm free!")
-      console.log(stationsVisited)
-
+        for (let j = 0; j<startStation.length;j++){
+          currentStation = startStation[j]
+           for (let k = 0;k<=directions.length;k++){
+            if(
+              currentStation.endsWith("Z")==false){
+                currentStationIndex = stations.indexOf(currentStation)
+                if(directions[k] === "R"){
+                  currentStation = rights[currentStationIndex]
+                  }else{
+                  currentStation = lefts[currentStationIndex]
+                  }stationsVisited++
+                if(k == directions.length){
+                  k=0}
+              }
+      }
+      console.log("solved " + startStation[j] + " in " + stationsVisited +" steps ("+stationsVisited/directions.length+" revolutions). Moving to " + startStation[j+1])
+      stationRatios.push(stationsVisited/directions.length)
+      stationMultiplier= (stationsVisited/directions.length)*stationMultiplier
+      console.log(stationRatios)
+      console.log(j+1+ " of " + startStation.length + " stations complete. The current Lowest Common Multiple is now " + stationMultiplier)
+      stationsVisited = 0
+      currentStation = startStation[j]
+    }
+    arrived = true
+    }while (!arrived)
+    console.log("Task complete, time to break out")
+    console.log("I'm free!")
+       console.log(stationMultiplier + " is the maximum revolutions needed, that's " + stationMultiplier*directions.length + " steps")
   } catch (err) {
     console.error(`Error reading file: ${err.message}`);
     throw err;
