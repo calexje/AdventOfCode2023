@@ -2,7 +2,7 @@ import { debug, time } from 'console';
 import { stat } from 'fs';
 import { readFile } from 'fs/promises';
 export async function processPart1() {
-  const elfFile = '/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-08/input.txt';
+  const elfFile = '/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-09/input.txt';
   const dataFile = await readFile(elfFile, 'utf8');
   const lines = dataFile.split ("\n");
   var currentStation = "AAA"

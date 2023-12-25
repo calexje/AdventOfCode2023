@@ -1,67 +1,65 @@
+import { debug } from 'console';
 import { readFile } from 'fs/promises';
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
 
-const fs = require('fs');
-const fileName = "/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-04/input.txt";
+export async function processPart2() {
+  const elfFile = '/Users/usuario/AdventOfCode2023/AdventOfCode2023/src/day-04/input.txt';
+
+  try {
+  var scoreTotal = 0 //total score
+  var scoreValue = 0
+  var replacementArray = []
+  var numberReplacement = {};
+    const dataFile = await readFile(elfFile, 'utf8');
+    const sanitiseFile = dataFile.replaceAll("  "," 0")
+    const dataArray = sanitiseFile.split("\n")
+    console.log(dataArray)
+    
+    //setting up initial loop 
+    for(let i = 0; i < dataArray.length;i++){
+    replacementArray.push(i+1)
+var winningString = dataArray[i].replace(/.*\:/,"").split("|")[0].trim().split(" ")
+var ourString = dataArray[i].replace(/.*\:/,"").split("|")[1].trim().split(" ")
+let currentArray = []
+for (let j = 0; j <ourString.length;j++){
+    //if the winning string is present
+  if(winningString.includes(ourString[j])&&i<dataArray.length) {
+    currentArray.push(i+2+scoreValue)
+    scoreValue++
+    console.log(currentArray)
+  } else if (i==dataArray.length) {console.log("we don't add after 200")}
+}
+numberReplacement[i+1] = currentArray
+scoreTotal+=1
+scoreValue=0
+}
+console.log("Exiting initial loop")
+console.log("I have a list of " + replacementArray.length+ " Numbers, starting at " + replacementArray[0])
+console.log(numberReplacement)
+
+let initialList = Array.from({ length: 200 }, (_, index) => index + 1);
+
+for (const key in numberReplacement) {
+    console.log("viewing " + key);
+    if (numberReplacement.hasOwnProperty(key)) {
+      const replacementValues = numberReplacement[key];
+      console.log("there are " + replacementValues.length + " for key " + key + " - " + replacementValues)
+      const occurrences = initialList.filter(value => value === parseInt(key, 10)).length;
+      // Increment scoreTotal by the number of replacements made
+      scoreTotal += replacementValues.length * occurrences;
   
-export async function processPart2(input) {
-try {
-  const file = fs.readFileSync(fileName, 'utf8');
-  const games = file.split(/\r?\n/);
-  let points = 0;
-  let cards = [];
-  
-  for (let i = 0; i < games.length; i++) {
-      let gameData = games[i].substring(games[i].indexOf(":") + 1);
-      let parts = gameData.split("|");
-      let winningNumbers = parts[0].trim().split(" ");
-      let winningLookup = {};
-      let count = 0;
-      for (let j = 0; j < winningNumbers.length; j++) {
-          // Unlike the training data, input data has extra spaces between numbers
-          if (winningNumbers[j] == "") {
-              continue;
-          }
-          let number = Number(winningNumbers[j]);
-          winningLookup[number] = true;
-      }
-      let myNumbers = parts[1].trim().split(" ");
-      for (let j = 0; j < myNumbers.length; j++) {
-          let number = Number(myNumbers[j]);
-          if (winningLookup[number]) {
-              count++
-          }
-      }
-  
-      cards.push({name: i, matches: count, processed: false});
-      if(count > 0) {
-          points = points + 2 ** (count - 1);
-      }
+      // Replace all occurrences of key in initialList with replacementValues
+      initialList = initialList.map(value => (value === parseInt(key, 10) ? replacementValues : value)).flat();
+    }
+    console.log(scoreTotal)
   }
-  
-  console.log(`Part 1: ${points} points`);
-  
-  let index = 0;
-  while(index < cards.length) {
-      let name = cards[index].name;
-      for(let i = 0; i < cards[index].matches; i++) {
-          cards.push({name: cards[name + i + 1].name, matches: cards[name + i + 1].matches, processed: false});
-      }
-      cards[index].processed = true;
-      index++;
-  }
-  
-  console.log(`Part 2: ${cards.length} cards`);
-    return "Part 2: "
+  debugger
+  console.log("everything is a 201, card 201 doesn't exist so we're exiting")
+  console.log(scoreTotal)
+    return "Part 2: " + scoreTotal
   } catch (err) {
     console.error(`Error reading file: ${err.message}`);
     throw err;
+
   }
-
-
-  return input;
-
+  
 }
-
-// I couldn't figure it out, I kept getting memory issues with my recursive attempt. I watched a video and coded along to get this solution, I'll do better next time.
