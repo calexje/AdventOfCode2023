@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import { processPart1 } from "./part-1.mjs";
 import { processPart2 } from "./part-2.mjs";
 
-const input = await fs.readFile("./src/day-08/input.txt", "utf8").catch((err) => {
+const input = await fs.readFile("./src/day-11/input.txt", "utf8").catch((err) => {
   console.error("Error reading file:", err);
 });
 
