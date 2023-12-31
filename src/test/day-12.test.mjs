@@ -1,10 +1,10 @@
 import assert from "node:assert";
 import test from "node:test";
 
-import { processPart1 } from "../day-11/part-1.mjs";
-import { processPart2 } from "../day-11/part-2.mjs";
+import { processPart1 } from "../day-12/part-1.mjs";
+import { processPart2 } from "../day-12/part-2.mjs";
 
-test("day 2", async (t) => {
+test("day 12", async (t) => {
   const input = "some input\n";
 
   await t.test("part 1", async (t) => {

@@ -23,7 +23,6 @@ export async function processPart1() {
 
 try {
 //set the grid array up
-/*
   for (let y = 0; y<rows.length;y++){
     for (let x = 0;x<rows[y].length;x++){
       cellValue = rows[y].split("")
@@ -109,7 +108,6 @@ do{
   // coords array is empty, there are no more galaxies to check. Push total distance and exit.
   console.log("The loop is done, " + totalDistance + " is the total distance")
 return totalDistance
-*/
   } catch (err) {
     console.error(`Error reading file: ${err.message}`);
     throw err;
